@@ -1,0 +1,6 @@
+tlmgr init-usertree
+sudo apt-get install xzdec
+tlmgr option repository ftp://tug.org/historic/systems/texlive/2015/tlnet-final
+tlmgr install fouriernc
+tlmgr install fourier
+tlmgr install stmaryrd

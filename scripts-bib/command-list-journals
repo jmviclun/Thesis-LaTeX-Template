@@ -1,0 +1,1 @@
+grep "journal =" thesisbiblio.bib | sed 's/journal\ =\ {//g' | sed 's/},//g' | sort | uniq | wc -l

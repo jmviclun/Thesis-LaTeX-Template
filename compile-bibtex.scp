@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ppwd=$(pwd)
+
+for i in -template -intro ; do # 01 02 03 04 05 06 07 08 ; do
+
+cd $ppwd/chapters/chapter$i
+if [ -e "chapter$i.aux" ] ; then bibtex chapter$i.aux ; fi
+
+done 

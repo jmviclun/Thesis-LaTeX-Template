@@ -1,0 +1,13 @@
+#!/bin/bash
+
+./compile-bibtex.scp
+
+pdflatex thesis_main.tex
+
+pdflatex thesis_main.tex
+
+
+rm thesis_main.aux thesis_main.idx thesis_main.log thesis_main.out thesis_main.toc
+rm */*.backup
+rm */*/*.backup  */*/*.blg */*/*.aux # */*/*.bbl 
+

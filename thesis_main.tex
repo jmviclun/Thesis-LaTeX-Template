@@ -1,0 +1,360 @@
+%Author's template: Jose Manuel Vicent-Luna
+
+%Download site: https://github.com/jmviclun/Thesis-LaTeX-Template
+
+%Template for thesis in b5paper format-size. Format adapted from University of Bristol Thesis Template by Victor F. Breña-Medina (https://www.overleaf.com/latex/templates/university-of-bristol-thesis-template/kzqrfvyxxcdm#.WpanyOYrPrd) 
+
+\RequirePackage[l2tabu]{nag}
+
+\documentclass[b5paper,10pt,reqno,openbib]{memoir}
+
+% Memoir is a flexible class for typesetting poetry, fiction, 
+% non-fiction and mathematical works as books, reports, articles or
+% manuscripts. CTAN repository is found at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/memoir/
+
+\usepackage{datetime}
+\usepackage{ifpdf}
+\ifpdf
+\pdfinfo{
+   /Author (Author's name)
+   /Title (PhD Thesis)
+   /Keywords (kw1; kw2; kw3)
+   /CreationDate (D:\pdfdate)
+}
+\fi
+\ifdraftdoc 
+\usepackage{draftwatermark} 
+\SetWatermarkScale{0.3}
+\SetWatermarkText{\bf Draft: \today}
+\fi
+
+\newsubfloat{figure}
+\newsubfloat{table}
+\settrimmedsize{170mm}{240mm}{*}
+\setlength{\trimtop}{0pt} 
+\setlength{\trimedge}{\stockwidth} 
+\addtolength{\trimedge}{-\paperwidth} 
+\settypeblocksize{634pt}{448.13pt}{*} 
+\setulmargins{4cm}{*}{*} 
+\setlrmargins{*}{*}{1.5} 
+\setmarginnotes{17pt}{51pt}{\onelineskip} 
+\setheadfoot{\onelineskip}{2\onelineskip} 
+\setheaderspaces{*}{2\onelineskip}{*} 
+%\checkandfixthelayout
+\frenchspacing
+\usepackage{fouriernc}
+\usepackage[T1]{fontenc}
+\OnehalfSpacing 
+\setsecnumdepth{subsection} 
+\maxsecnumdepth{subsubsection}
+
+\usepackage[papersize={170mm,240mm},tmargin=30mm,bmargin=15mm,lmargin=22.5mm,
+rmargin=17.5mm]{geometry} 
+
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+
+\usepackage{calc,soul,fourier}
+\makeatletter 
+\newlength\dlf@normtxtw 
+\setlength\dlf@normtxtw{\textwidth} 
+\newsavebox{\feline@chapter} 
+\newcommand\feline@chapter@marker[1][4cm]{%
+\sbox\feline@chapter{% 
+\resizebox{!}{#1}{\fboxsep=1pt%
+\colorbox{gray}{\color{white}\thechapter}% 
+}}%
+\rotatebox{90}{% 
+\resizebox{%
+\heightof{\usebox{\feline@chapter}}+\depthof{\usebox{\feline@chapter}}}% 
+{!}{\scshape\so\@chapapp}}\quad%
+\raisebox{\depthof{\usebox{\feline@chapter}}}{\usebox{\feline@chapter}}%
+} 
+\newcommand\feline@chm[1][4cm]{%
+\sbox\feline@chapter{\feline@chapter@marker[#1]}% 
+\makebox[0pt][c]{% aka \rlap
+\makebox[0cm][r]{\usebox\feline@chapter}%
+}}
+
+
+%Define two chapter's styles
+
+\makechapterstyle{chapterstyle1}{
+\renewcommand\chapnamefont{\normalfont\Large\scshape\raggedleft\so} 
+\renewcommand\chaptitlefont{\Large\bfseries}%\scshape} 
+\renewcommand\chapternamenum{} \renewcommand\printchaptername{} 
+\renewcommand\printchapternum{\null\vskip -100pt\hfill\feline@chm[3.0cm]\par}
+%\renewcommand\printchapternum{\null\hfill\feline@chm[3.0cm]\par}
+\renewcommand\afterchapternum{\par\vskip\midchapskip} 
+\renewcommand\printchaptertitle[1]{\color{gray}\chaptitlefont##1\par}
+} 
+
+\makechapterstyle{chapterstyle2}{
+\renewcommand\chapnamefont{\normalfont\Large\scshape\raggedleft\so} 
+\renewcommand\chaptitlefont{\Large\bfseries}%\scshape} 
+\renewcommand\chapternamenum{} \renewcommand\printchaptername{} 
+\renewcommand\printchapternum{}
+%\renewcommand\printchapternum{\null\hfill\feline@chm[3.0cm]\par}
+\renewcommand\afterchapternum{\par\vskip\midchapskip} 
+\renewcommand\printchaptertitle[1]{\color{gray}\chaptitlefont##1\par}
+}
+
+\patchcmd{\@makechapterhead}{50\p@}{\chapheadtopskip}{}{}
+\patchcmd{\@makeschapterhead}{50\p@}{\chapheadtopskip}{}{}
+\newlength{\chapheadtopskip}\setlength{\chapheadtopskip}{10pt}
+
+%Define two page's styles
+
+\fancypagestyle{style1}{
+\fancyhf{}	
+\fancyhead[RO,LE]{\colorbox{gray}{\textbf{\color{white}\thepage}}} 
+%\fancyhead[RO,LE]{\thepage} 
+%\fancyhead[LO]{\leftmark} 
+\fancyhead[RE,LO]{\textbf{Chapter \thechapter}}
+%\fancyhead[RE,LO]{\rightmark}
+\renewcommand{\headrulewidth}{1.5pt}
+}
+
+\fancypagestyle{style2}{
+\fancyhf{}	
+\fancyhead[RO,LE]{\colorbox{gray}{\textbf{\color{white}\thepage}}} 
+%\fancyhead[RO,LE]{\thepage} 
+%\fancyhead[LO]{\leftmark} 
+\fancyhead[RE,LO]{\textbf{Appendix \thechapter}}
+%\fancyhead[RE,LO]{\rightmark}
+\renewcommand{\headrulewidth}{1.5pt}
+}
+
+\newcommand{\clearemptydoublepage}{\newpage{\thispagestyle{empty}
+\cleardoublepage}}
+\makeindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Define packages
+
+\usepackage{import}
+\usepackage{lipsum} %Needed to create dummy text
+\usepackage{amsfonts} %Calls Amer. Math. Soc. (AMS) fonts
+\usepackage[centertags]{amsmath} %Writes maths centred down
+\usepackage{stmaryrd} %New AMS symbols
+\usepackage{amssymb} %Calls AMS symbols
+\usepackage{amsthm} %Calls AMS theorem environment
+\usepackage{newlfont} %Helpful package for fonts and symbols
+\usepackage{layouts} %Layout diagrams
+\usepackage{graphicx} %Calls figure environment
+\usepackage{longtable,rotating} %Long tab environments including rotation. 
+\usepackage{inputenc} %Needed to encode non english characters 
+\usepackage{colortbl} %Makes coloured tables
+\usepackage{wasysym} %More math symbols
+\usepackage{mathrsfs} %Even more math symbols
+\usepackage{float} %Helps to place figures, tables, etc. 
+\usepackage{verbatim} %Permits pre-formated text insertion
+\usepackage{upgreek } %Calls other kind of greek alphabet
+\usepackage{latexsym} %Extra symbols
+\usepackage[square,numbers,sort&compress,sectionbib]{natbib} %Calls 
+%bibliographycommands
+\usepackage{chapterbib}
+%\usepackage[style=alphabetic,backend=bibtex]{biblatex}
+\usepackage{url} %Supports url commands
+\usepackage{etex} %eTeXÕs extended support for counters
+\usepackage{fixltx2e}
+\usepackage[english]{babel}%For languages characters and hyphenation
+\usepackage{color} %Creates coloured text and background
+\usepackage[colorlinks=true,allcolors=black]{hyperref}          
+%Creates hyperlinks in cross references
+\usepackage{memhfixc} %Should be used after hyperref
+\usepackage{enumerate} %For enumeration counter
+\usepackage{footnote} %For footnotes
+\usepackage{microtype} %Makes pdf look better.
+\usepackage{rotfloat}
+\usepackage{alltt}
+\usepackage{multicol}
+\usepackage{etoolbox}
+\usepackage{relsize}
+\usepackage{pdfpages}
+%\usepackage{biblatex}
+\usepackage{adjustbox}
+\setlength{\columnsep}{0.5cm}
+\usepackage[version=0.96]{pgf} %PGF/TikZ is a tandem of 
+%languages for producing vector graphics from a 
+\usepackage{tikz}
+%geometric/algebraic description.
+\usetikzlibrary{arrows,shapes,snakes,
+automata,backgrounds,
+petri,topaths}%To use diverse features 
+
+\widowpenalty=1000
+\clubpenalty=1000
+
+\usepackage{lettrine}
+\usepackage{wrapfig}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Define formats
+
+\newcommand{\initial}[1]{%
+\lettrine[lines=3,lhang=0.33,nindent=0em]{
+\color{gray}
+{\textsc{#1}}}{}}
+
+\newcounter{cnt}\setcounter{cnt}{0}
+\def\t{\stepcounter{cnt}\thecnt. cat sat on the mat. }
+
+\newdimen\tttaa
+\newdimen\tttbb
+
+\makeatletter
+\def\merge@ps{\afterassignment\merge@ps@\tttbb}
+
+\def\merge@ps@{\afterassignment\merge@ps@@\tttaa}
+
+\def\merge@ps@@{%
+\afterassignment\reset@WF@ps\dimen@\WF@ps\valign
+%\showthe\count@
+\ifnum\count@>\@ne
+\advance\count@\m@ne
+\expandafter\merge@ps
+\fi
+}
+
+\def\reset@WF@ps{\afterassignment\reset@WF@ps@\dimen@ii}
+
+\def\reset@WF@ps@#1\valign{%
+\edef\new@wf@ps{\new@wf@ps
+  \the\dimexpr\dimen@+\tttbb\relax\space
+  \the\dimexpr\dimen@ii-\tttbb\relax\space}%
+ \def\WF@ps{#1}}
+
+\newcommand{\wflettrine}[3][]{%
+  
+\setbox\tw@\hbox{\lettrine[#1]{#2}{#3}\global\let\gtmp\L@parshape}%
+  \afterassignment\wf@getoffset\count@\gtmp\hoffset
+  \setbox\WF@box\hbox{\kern-\dimen@\box\WF@box\kern\dimen@}%
+  \noindent\box\tw@
+    \def\new@wf@ps{}%
+    \afterassignment\merge@ps\count@\gtmp
+    \edef\WF@ps{\new@wf@ps\space\WF@ps}%
+    \@@parshape\c@WF@wrappedlines\WF@ps\z@\columnwidth}
+
+\def\wf@getoffset{\afterassignment\wf@get@ffset\dimen@}
+\def\wf@get@ffset#1\hoffset{}
+
+\makeatother
+
+\makeatletter
+\renewcommand{\@memb@bchap}{%
+  \section*{\bibname}%
+  \bibmark
+  \ifnobibintoc\else
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\bibname}%
+  \fi
+  \prebibhook}
+\makeatother
+
+\patchcmd{\mcitethebibliography}
+  {\advance\leftmargin\labelsep}
+  {\leftmargin=0pt\itemindent=\labelwidth\advance\itemindent\labelsep}
+  {}{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  
+%% Define user's commands  
+\newcommand{\cod}{CO$_2$\,}
+\newcommand{\chc}{CH$_4$\,}
+\newcommand{\nd}{N$_2$\,}
+  
+%choose default chapter and page styles
+
+\makeatother 
+\chapterstyle{chapterstyle1}
+\pagestyle{style1}	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+% 
+\frontmatter
+\pagenumbering{roman}
+
+\pagestyle{empty}
+\includepdf[pages=1,pagecommand={},offset=-6.7cm 
+-0.5cm]{frontmatter/cover_thesis_front.pdf}
+\clearemptydoublepage
+
+%\input{frontmatter/blank}
+%\clearemptydoublepage
+
+
+\input{frontmatter/title}
+\clearemptydoublepage
+
+
+\input{frontmatter/funding}
+\clearemptydoublepage
+
+\pagestyle{style1}
+
+\renewcommand{\contentsname}{Table of Contents}
+\maxtocdepth{subsection}
+\tableofcontents*
+\addtocontents{toc}{\par\nobreak \mbox{}\hfill{\bf Page}\par\nobreak}
+\clearemptydoublepage
+
+
+\mainmatter
+
+
+\pagestyle{style1}
+\include{chapters/chapter-intro/chapter-intro}
+\clearemptydoublepage
+\include{chapters/chapter-template/chapter-template}
+\clearemptydoublepage
+\include{chapters/conclusions/conclusions}
+\clearemptydoublepage
+\chapterstyle{chapterstyle2}
+\renewcommand{\thechapter}{}
+\include{chapters/summary/summary}
+\clearemptydoublepage
+
+
+\appendix
+\pagestyle{style2}
+\renewcommand{\thechapter}{\arabic{chapter}}
+
+\import{chapters/appendices/}{appendix-template.tex}
+
+\clearemptydoublepage
+
+\pagestyle{empty}
+\chapterstyle{chapterstyle2}
+\renewcommand{\thechapter}{}
+\input{frontmatter/publications}
+\clearemptydoublepage
+\input{frontmatter/dedication}
+\clearemptydoublepage
+
+\pagestyle{empty}
+\includepdf[pages=1,pagecommand={},offset=-6.7cm 
+-0.5cm]{frontmatter/cover_back_10.pdf}
+
+\end{document}
